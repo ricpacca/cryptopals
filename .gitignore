@@ -1,0 +1,12 @@
+# Pycharm files
+.idea/
+
+# Extra unpolished code
+substitution_cipher/
+
+# Virtual environment
+venv/
+
+# Temporary files
+.DS_Store
+__pycache__/
