@@ -91,13 +91,13 @@ def attack_padding_oracle(ciphertext, oracle):
             #
             #     123456789012/x04/x04/x04/x04
             #
-            # There would be two possible characters that give us a valid padding (/x01 and /x04).
+            # There would be two possible last characters that form a valid padding (/x01 and /x04).
             # However if we try the next character too, we can easily choose the correct one.
             if len(possible_last_bytes) != 1:
                 for byte in possible_last_bytes:
                     for j in range(256):
                         forced_iv = create_forced_previous_block(ciphertext_blocks[c - 1], j, padding_len + 1,
-                                                                 plaintext_block + bytes([byte]))
+                                                                 bytes([byte]) + plaintext_block)
 
                         # If we manage to get a valid padding, then it's very likely that this
                         # candidate is the one that we want. So exclude the others and exit the loop.
